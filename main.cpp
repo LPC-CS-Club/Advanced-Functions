@@ -11,6 +11,7 @@ using namespace std;
 // This is the main function! 
 int main()
 {
+	cout << "Joanna is testing GitHub right now!" << endl;
   
   // terminate
   return 0;
