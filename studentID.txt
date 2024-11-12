@@ -1,0 +1,3 @@
+Lab1 Math 86 100 0.4
+Lab2 Physics 90 100 0.2
+Exam1 CS 20 50 0.5
