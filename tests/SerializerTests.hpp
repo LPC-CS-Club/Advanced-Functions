@@ -11,4 +11,6 @@ public:
 
     int testDouble0() const;
     int testDouble1() const;
+    int testString0() const;
+    int testCompound0() const;
 };

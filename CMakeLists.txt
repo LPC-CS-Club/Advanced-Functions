@@ -31,3 +31,5 @@ add_executable(SerializerTests
         Serializer.hpp)
 add_test(SerializerTestDouble0 SerializerTests testDouble0)
 add_test(SerializerTestDouble1 SerializerTests testDouble1)
+add_test(SerializerTestString0 SerializerTests testString0)
+add_test(SerializerTestCompound0 SerializerTests testCompound0)
