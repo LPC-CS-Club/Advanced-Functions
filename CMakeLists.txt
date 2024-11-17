@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.29)
 project(Student-Grade-Management)
 
+include(CTest)
+
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(.)
@@ -21,3 +23,11 @@ add_executable(Student-Grade-Management
     viewGrades.hpp
         Serializer.cpp
         Serializer.hpp)
+
+add_executable(SerializerTests
+        tests/SerializerTests.cpp
+        tests/SerializerTests.hpp
+        Serializer.cpp
+        Serializer.hpp)
+add_test(SerializerTestDouble0 SerializerTests testDouble0)
+add_test(SerializerTestDouble1 SerializerTests testDouble1)
