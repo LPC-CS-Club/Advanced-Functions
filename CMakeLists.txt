@@ -18,4 +18,6 @@ add_executable(Student-Grade-Management
     search.cpp
     search.hpp
     viewGrades.cpp
-    viewGrades.hpp)
+    viewGrades.hpp
+        Serializer.cpp
+        Serializer.hpp)
