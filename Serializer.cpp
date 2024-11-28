@@ -23,17 +23,17 @@ Student Serializer::deserialize(const std::vector<std::byte> &data) const {
 }
 
 
-void Serializer::serialize(const Student &, std::vector<std::byte> &) const {
+void Serializer::serialize(const Student &, std::vector<std::byte> &) {
     throw std::runtime_error("Not implemented");
 }
 
 
-void Serializer::serialize(const Assignment &, std::vector<std::byte> &) const {
+void Serializer::serialize(const Assignment &, std::vector<std::byte> &) {
     throw std::runtime_error("Not implemented");
 }
 
 
-void Serializer::serialize(const std::string &str, std::vector<std::byte> &byte_array) const {
+void Serializer::serialize(const std::string &str, std::vector<std::byte> &byte_array) {
     const auto * bytes = reinterpret_cast<const std::byte *>(str.c_str());
     for (std::size_t i = 0; i <= str.length(); ++i) {
         byte_array.push_back(bytes[i]);
@@ -41,7 +41,7 @@ void Serializer::serialize(const std::string &str, std::vector<std::byte> &byte_
 }
 
 
-void Serializer::serialize(const double &val, std::vector<std::byte> &byte_array) const {
+void Serializer::serialize(const double &val, std::vector<std::byte> &byte_array) {
     const auto *bytes = reinterpret_cast<const std::byte *>(&val);
     for (std::size_t i = 0; i < sizeof(double); i++) {
         byte_array.push_back(bytes[i]);
@@ -49,17 +49,17 @@ void Serializer::serialize(const double &val, std::vector<std::byte> &byte_array
 }
 
 
-Student Serializer::deserialize_student(const std::vector<std::byte> &, std::size_t &) const {
+Student Serializer::deserialize_student(const std::vector<std::byte> &, std::size_t &) {
     throw std::runtime_error("Not implemented");
 }
 
 
-Assignment Serializer::deserialize_assignment(const std::vector<std::byte> &, std::size_t &) const {
+Assignment Serializer::deserialize_assignment(const std::vector<std::byte> &, std::size_t &) {
     throw std::runtime_error("Not implemented");
 }
 
 
-std::string Serializer::deserialize_string(const std::vector<std::byte> &byte_array, std::size_t &index) const {
+std::string Serializer::deserialize_string(const std::vector<std::byte> &byte_array, std::size_t &index) {
     const auto *charPtr = reinterpret_cast<const char *>(byte_array.data()+index);
     std::string str(charPtr);
     index += str.length() + 1;
@@ -67,7 +67,7 @@ std::string Serializer::deserialize_string(const std::vector<std::byte> &byte_ar
 }
 
 
-double Serializer::deserialize_double(const std::vector<std::byte> &byte_array, std::size_t &index) const {
+double Serializer::deserialize_double(const std::vector<std::byte> &byte_array, std::size_t &index) {
     const auto val = *bit_cast<double *>(byte_array.data() + index);
     index += sizeof(double);
     return val;

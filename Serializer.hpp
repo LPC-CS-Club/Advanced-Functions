@@ -19,16 +19,16 @@ private:
     const int version;
 
     // serializing functions
-    void serialize(const Student &, std::vector<std::byte> &) const;
-    void serialize(const Assignment &, std::vector<std::byte> &) const;
-    void serialize(const std::string &, std::vector<std::byte> &) const;
-    void serialize(const double &, std::vector<std::byte> &) const;
+    static void serialize(const Student &, std::vector<std::byte> &);
+    static void serialize(const Assignment &, std::vector<std::byte> &);
+    static void serialize(const std::string &, std::vector<std::byte> &);
+    static void serialize(const double &, std::vector<std::byte> &);
 
     // deserializing functions
-    Student deserialize_student(const std::vector<std::byte> &, std::size_t &) const;
-    Assignment deserialize_assignment(const std::vector<std::byte> &, std::size_t &) const;
-    std::string deserialize_string(const std::vector<std::byte> &, std::size_t &) const;
-    double deserialize_double(const std::vector<std::byte> &, std::size_t &) const;
+    static Student deserialize_student(const std::vector<std::byte> &, std::size_t &);
+    static Assignment deserialize_assignment(const std::vector<std::byte> &, std::size_t &);
+    static std::string deserialize_string(const std::vector<std::byte> &, std::size_t &);
+    static double deserialize_double(const std::vector<std::byte> &, std::size_t &);
 
     friend class SerializerTests;
 };
