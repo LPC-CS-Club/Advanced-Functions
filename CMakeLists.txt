@@ -21,8 +21,10 @@ add_executable(Student-Grade-Management
     search.hpp
     viewGrades.cpp
     viewGrades.hpp
-        Serializer.cpp
-        Serializer.hpp)
+    Serializer.cpp
+    Serializer.hpp
+    Encryptor.cpp
+    Encryptor.hpp)
 
 add_executable(SerializerTests
         tests/SerializerTests.cpp
