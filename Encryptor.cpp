@@ -14,9 +14,9 @@ int Encryptor::getVersion() const {
 
 
 void Encryptor::encrypt(std::vector<std::byte> &data, const std::string &password) const {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error("Encryptor::encrypt is not implemented");
 }
 
 void Encryptor::decrypt(std::vector<std::byte> &data, const std::string &password) const {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error("Encryptor::decrypt is not implemented");
 }
