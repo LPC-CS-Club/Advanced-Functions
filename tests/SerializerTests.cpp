@@ -1,13 +1,9 @@
-//
-// Created by light on 11/17/2024.
-//
-
 #include "SerializerTests.hpp"
 #include <array>
 #include <cassert>
 #include <cmath>
 
-int main(int argc, char* argv[]) {
+int main(const int argc, char* argv[]) {
     const auto tests = SerializerTests();
 
     if (argc < 2) {
@@ -44,13 +40,13 @@ int SerializerTests::testDouble0() const {
     std::array<double, SIZE> doubles = {2.3, 3.14, -17, 3e8, 6.02e23, 1.6e-19, 0, -0, INFINITY,
         static_cast<double>(-INFINITY), NAN, std::nan("1"), std::nan("259")};
     for (double value : doubles) {
-        serializer.serialize(value, data);
+        Serializer::serialize(value, data);
     }
 
     std::array<double, SIZE> outputDoubles{};
     std::size_t index = 0;
     for (int i = 0; i < SIZE; i++) {
-        outputDoubles[i] = serializer.deserialize_double(data, index);
+        outputDoubles[i] = Serializer::deserialize_double(data, index);
     }
 
     for (int i = 0; i < SIZE; i++) {
@@ -90,13 +86,13 @@ int SerializerTests::testDouble1() const {
     }
 
     for (double value: values) {
-        serializer.serialize(value, data);
+        Serializer::serialize(value, data);
     }
 
     std::size_t index = 0;
     std::vector<double> outputDoubles;
     for (int i = 0; i < values.size(); i++) {
-        outputDoubles.push_back(serializer.deserialize_double(data, index));
+        outputDoubles.push_back(Serializer::deserialize_double(data, index));
     }
 
     return values == outputDoubles && index == sizeof(double) * values.size() ? 0 : 1;
@@ -112,12 +108,12 @@ int SerializerTests::testString0() const {
         "Goodbye!"
     };
     for (const std::string& msg : msgs) {
-        serializer.serialize(msg, data);
+        Serializer::serialize(msg, data);
     }
     std::vector<std::string> outputStrings;
     std::size_t index = 0;
     for (int i = 0; i < msgs.size(); i++) {
-        outputStrings.push_back(serializer.deserialize_string(data, index));
+        outputStrings.push_back(Serializer::deserialize_string(data, index));
     }
 
     if (msgs.size() != outputStrings.size()) {
@@ -145,20 +141,20 @@ int SerializerTests::testCompound0() const {
     double f = 0.0;
 
     std::vector<std::byte> data;
-    serializer.serialize(a, data);
-    serializer.serialize(b, data);
-    serializer.serialize(c, data);
-    serializer.serialize(d, data);
-    serializer.serialize(e, data);
-    serializer.serialize(f, data);
+    Serializer::serialize(a, data);
+    Serializer::serialize(b, data);
+    Serializer::serialize(c, data);
+    Serializer::serialize(d, data);
+    Serializer::serialize(e, data);
+    Serializer::serialize(f, data);
 
     std::size_t index = 0;
-    assert(serializer.deserialize_double(data, index) == a);
-    assert(serializer.deserialize_double(data, index) == b);
-    assert(serializer.deserialize_string(data, index) == c);
-    assert(serializer.deserialize_double(data, index) == d);
-    assert(serializer.deserialize_string(data, index) == e);
-    assert(serializer.deserialize_double(data, index) == f);
+    assert(Serializer::deserialize_double(data, index) == a);
+    assert(Serializer::deserialize_double(data, index) == b);
+    assert(Serializer::deserialize_string(data, index) == c);
+    assert(Serializer::deserialize_double(data, index) == d);
+    assert(Serializer::deserialize_string(data, index) == e);
+    assert(Serializer::deserialize_double(data, index) == f);
 
     assert(index == data.size());
     return 0;
